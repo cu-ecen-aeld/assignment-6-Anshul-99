@@ -8,7 +8,7 @@ SRC_URI = "git://git@github.com/cu-ecen-aeld/assignments-3-and-later-Anshul-99.g
 
 PV = "1.0+git${SRCPV}"
 # /TODO: set to reference a specific commit hash in your assignment repo
-SRCREV = "f0d30c2604d4c433f5193646125a0d4f95d05e83"
+SRCREV = "be6ee4e1dab793fb63b7c09e15342f1131e21e57"
 
 # This sets your staging directory based on WORKDIR, where WORKDIR is defined at 
 # https://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-WORKDIR
@@ -19,6 +19,7 @@ S = "${WORKDIR}/git/server"
 # TODO: Add the aesdsocket application and any other files you need to install
 # See http://git.yoctoproject.org/cgit.cgi/poky/plain/meta/conf/bitbake.conf?h=warrior for yocto path prefixes
 FILES_${PN} += "${bindir}/aesdsocket"
+
 # TODO: customize these as necessary for any libraries you need for your application
 TARGET_LDFLAGS += "-pthread -lrt"
 
@@ -40,7 +41,7 @@ do_install () {
 	install -m 0755 ${S}/aesdsocket ${D}${bindir}/
 	
 	install -d ${D}${sysconfdir}/init.d
-	install -m ${S}/aesdsocket-start-stop.sh ${D}${sysconfdir}/init.d
+	install -m 0755 ${S}/aesdsocket-start-stop.sh ${D}${sysconfdir}/init.d
 	
 	# TODO: Install your binaries/scripts here.
 	# Be sure to install the target directory with install -d first
